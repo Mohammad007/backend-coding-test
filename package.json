@@ -7,8 +7,10 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha tests",
-    "start": "node index.js"
+    "test": "nyc mocha ./tests/**/*.test.js",
+    "start": "node index.js",
+    "pre-push": "npm run test",
+    "test:load": "artillery run load-test.yml"
   },
   "keywords": [
     "Xendit"
@@ -18,10 +20,15 @@
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.16.4",
-    "sqlite3": "^4.0.6"
+    "sqlite3": "^4.0.6",
+    "winston": "^3.8.2"
   },
   "devDependencies": {
+    "artillery": "^2.0.0-30",
+    "eslint": "^8.36.0",
     "mocha": "^6.1.4",
+    "nyc": "^15.1.0",
+    "pre-push": "^0.1.4",
     "supertest": "^4.0.2"
   }
 }

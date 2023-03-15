@@ -1,0 +1,23 @@
+config:
+  target: "http://localhost:8010"
+  phases:
+    - duration: 30
+      arrivalRate: 100
+  metrics:
+    - name: "p99"
+      type: "p"
+      percentile: 99
+  scenarios:
+    - name: "Get health"
+      flow:
+        - get:
+            url: "/health"
+            headers:
+              content-type: "application/json"
+  scenarios:
+    - name: "Get Rides"
+      flow:
+        - get:
+            url: "/rides"
+            headers:
+              content-type: "application/json"
